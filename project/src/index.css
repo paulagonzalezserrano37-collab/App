@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --mf-green: #16a34a;
+    --mf-green-light: #22c55e;
+    --mf-green-dark: #15803d;
+    --mf-green-50: #f0fdf4;
+    --mf-green-100: #dcfce7;
+    --mf-orange: #f97316;
+    --mf-orange-light: #fb923c;
+    --mf-amber: #f59e0b;
+    --mf-red: #ef4444;
+    --mf-bg: #f0f4ef;
+    --mf-text: #1c1917;
+    --mf-text-muted: #78716c;
+    --mf-border: rgba(255,255,255,0.6);
+    --mf-glass: rgba(255,255,255,0.72);
+    --mf-glass-border: rgba(255,255,255,0.45);
+    --mf-shadow: 0 4px 24px -8px rgba(22,163,74,0.12), 0 2px 8px -4px rgba(0,0,0,0.06);
+    --mf-shadow-lg: 0 12px 40px -12px rgba(22,163,74,0.18), 0 4px 12px -6px rgba(0,0,0,0.08);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--mf-bg);
+    color: var(--mf-text);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Decorative background blobs */
+.mf-bg-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+.mf-bg-blob-1 {
+  top: -120px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #86efac, transparent 70%);
+}
+.mf-bg-blob-2 {
+  top: 40%;
+  left: -100px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #fde68a, transparent 70%);
+  opacity: 0.25;
+}
+.mf-bg-blob-3 {
+  bottom: -100px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #bbf7d0, transparent 70%);
+  opacity: 0.3;
+}
+
+@layer components {
+  /* Glass card */
+  .glass {
+    background: var(--mf-glass);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid var(--mf-glass-border);
+    box-shadow: var(--mf-shadow);
+  }
+
+  .glass-card {
+    background: var(--mf-glass);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid var(--mf-glass-border);
+    box-shadow: var(--mf-shadow);
+    border-radius: 24px;
+  }
+
+  .glass-nav {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 -4px 24px -8px rgba(0,0,0,0.1), 0 -2px 8px -4px rgba(0,0,0,0.04);
+  }
+
+  /* Buttons */
+  .mf-btn {
+    @apply flex items-center justify-center gap-2 font-semibold transition-all active:scale-95 select-none;
+  }
+
+  .mf-btn-primary {
+    @apply mf-btn bg-green-600 text-white rounded-full px-6 py-3.5 text-base shadow-md shadow-green-600/20;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  &:active { transform: scale(0.96); box-shadow: 0 2px 12px -4px rgba(22,163,74,0.3); }
+  &:hover { box-shadow: 0 8px 24px -8px rgba(22,163,74,0.35); }
+  }
+
+  .mf-btn-secondary {
+    @apply mf-btn bg-white/80 text-stone-700 rounded-full px-6 py-3.5 text-base;
+    border: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px -4px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+    &:active { transform: scale(0.96); }
+    &:hover { background: rgba(255,255,255,0.95); }
+  }
+
+  .mf-btn-urgent {
+    @apply mf-btn bg-red-500 text-white rounded-full px-6 py-3.5 text-base shadow-md shadow-red-500/20;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s ease;
+    &:active { transform: scale(0.96); }
+  }
+
+  .mf-btn-nav {
+    @apply mf-btn bg-orange-500 text-white rounded-full px-6 py-3.5 text-base shadow-md shadow-orange-500/20;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s ease;
+    &:active { transform: scale(0.96); }
+  }
+
+  .mf-badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  /* Inputs */
+  .mf-input {
+    @apply w-full rounded-2xl px-4 py-3.5 text-base text-stone-900 placeholder:text-stone-400 outline-none transition;
+    background: rgba(255,255,255,0.85);
+    border: 1.5px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    &:focus {
+      border-color: var(--mf-green);
+      box-shadow: 0 0 0 4px rgba(22,163,74,0.12);
+      background: rgba(255,255,255,0.95);
+    }
+  }
+
+  .mf-label {
+    @apply block text-sm font-semibold text-stone-600 mb-1.5;
+  }
+
+  /* Section title */
+  .mf-section-title {
+    @apply text-sm font-bold text-stone-500 uppercase tracking-wide;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.35s ease-out both;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.35s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.25s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .animate-check {
+    animation: checkPop 0.4s cubic-bezier(0.16,1,0.3,1) both;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes checkPop {
+  0% { opacity: 0; transform: scale(0.5); }
+  60% { transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
